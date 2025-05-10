@@ -16,7 +16,7 @@ int on_fork(struct trace_event_raw_sched_process_fork *ctx) {
 
     e->pid = ctx->child_pid;
     e->type = 'F';
-    bpf_core_read_str(&e->comm, sizeof(e->comm), ctx->child_comm);
+    bpf_probe_read_str(e->comm, sizeof(e->comm), ctx->child_comm);
     bpf_ringbuf_submit(e, 0);
     return 0;
 }
