@@ -1,12 +1,7 @@
 #include "vmlinux.h"
+#include "event.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
-
-struct event {
-    u32 pid;
-    char comm[16];
-    char type; // 'F' or 'E'
-};
 
 struct {
     __uint(type, BPF_MAP_TYPE_RINGBUF);
